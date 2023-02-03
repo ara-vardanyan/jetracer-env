@@ -40,19 +40,22 @@ def check_package():
         logging.info(
             f"BINARY ENVS NOT FOUND! DOWNLOADING FOR {platform.system().upper()}..."
         )
-
         os.makedirs(__BIN_DIR, exist_ok=True)
         os.makedirs(os.path.join(__CURR_DIR, "temp"), exist_ok=True)
         gdown.download(
             "https://drive.google.com/uc?id=" + G_ID,
             os.path.join(__CURR_DIR, "temp/soccer_twos.zip"),
         )
-
+        # print('CUrrent directory', __CURR_DIR)
         logging.debug("Unzipping...")
+
+        # print(os.path.join(__CURR_DIR, "temp/soccer_twos.zip"))
+
         with zipfile.ZipFile(
             os.path.join(__CURR_DIR, "temp/soccer_twos.zip"), "r"
         ) as zip_ref:
             zip_ref.extractall(__BIN_DIR)
+            logging.info('SUCCESSSSSSSS')
 
         try:
             # try adding execute permissions to the binary
